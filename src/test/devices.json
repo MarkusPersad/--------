@@ -1,0 +1,22 @@
+{
+  "devices": [
+    {
+      "status": 1,
+      "name": "Device1",
+      "id": "1",
+      "websocketId": "1"
+    },
+    {
+      "status": 1,
+      "name": "Device2",
+      "id": "2",
+      "websocketId": "2"
+    },
+    {
+      "status": 1,
+      "name": "Device3",
+      "id": "3",
+      "websocketId": "3"
+    }
+  ]
+}
