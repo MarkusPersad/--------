@@ -1,7 +1,7 @@
 <script setup>
 import { ref} from "vue";
-import {Expand, Fold, Grid, Monitor, TrendCharts} from "@element-plus/icons-vue";
-import {useDevicesMonitor} from "../../store/index.js";
+import {Expand, Fold, Grid, Monitor, TrendCharts,Orange,Setting,Files} from "@element-plus/icons-vue";
+import {useDevicesMonitor, useSelectedFile} from "../../store/index.js";
 import {useRouter} from "vue-router";
 defineOptions({
   name:'Layout'
@@ -17,6 +17,7 @@ const handleOpen=(key,keyPath)=>{
 const handleClose=(key,keyPath)=>{
   console.log(key,keyPath)
 }
+const {setSelectedFile} = useSelectedFile()
 </script>
 
 <template>
@@ -49,7 +50,21 @@ const handleClose=(key,keyPath)=>{
         <ElIcon><TrendCharts/></ElIcon>
         <span>Changes History</span>
       </ElMenuItem>
-      <ElMenuItem index="4">
+      <ElMenuItem index="4" @click="router.push('/about')">
+        <el-icon><Orange /></el-icon>
+        <span>About</span>
+      </ElMenuItem>
+      <ElSubMenu index="5">
+        <template #title>
+          <el-icon><Setting /></el-icon>
+          <span>Settings</span>
+        </template>
+        <ElMenuItem index="5-1" @click="setSelectedFile">
+          <el-icon><Files /></el-icon>
+          <span>Open File...</span>
+        </ElMenuItem>
+      </ElSubMenu>
+      <ElMenuItem index="5">
         <div v-show="isCollapse===true" @click="isCollapse=!isCollapse">
           <ElIcon><Expand/></ElIcon>
         </div>

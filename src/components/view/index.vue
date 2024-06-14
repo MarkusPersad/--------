@@ -3,6 +3,8 @@ import {TresCanvas} from "@tresjs/core";
 import {GLTFModel, Html, OrbitControls} from "@tresjs/cientos";
 import {findParent} from '../../utils/index.js'
 import {onMounted, ref} from "vue";
+import {useSelectedFile} from "../../store/index.js";
+import Chart from "../Echarts/index.vue";
 defineOptions({
   name:'View'
 })
@@ -11,15 +13,16 @@ const Model = ref()
 onMounted(()=>{
   console.log('Model:',Model.value)
 })
+const {selectedFile} = useSelectedFile()
 </script>
 
 <template>
 <div id="container">
   <TresCanvas>
-    <TresPerspectiveCamera/>
     <TresAmbientLight/>
     <TresDirectionalLight/>
-    <OrbitControls/>
+    <TresPerspectiveCamera :args="[45, 1, 0.1, 1000]" />
+    <OrbitControls />
     <Html
         center
         transform
@@ -27,12 +30,10 @@ onMounted(()=>{
         :position="htmlPosition.value?[htmlPosition.value[0],10, htmlPosition.value[2]]:[0, 10, 0.65]"
         :scale="[0.75, 0.75, 0.75]"
     >
-    <h1 class="bg-white dark:bg-dark text-xs p-1 rounded">
-      I'm a Box 📦
-    </h1>
+    <Chart/>
     </Html>
     <Suspense>
-      <GLTFModel :ref="Model" path="3dModels/city.glb" draco @click="(interaction)=>{
+      <GLTFModel  :ref="Model" :path="selectedFile?selectedFile:'3dModels/city.glb'" draco @click="(interaction)=>{
         console.log('click:',interaction.intersections)
         let pos = findParent(interaction)
         htmlPosition.value=[pos.x,pos.y,pos.z]
