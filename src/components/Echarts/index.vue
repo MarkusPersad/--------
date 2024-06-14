@@ -68,7 +68,7 @@ onUnmounted(()=>{
 
 <template>
   <div class="echarts-box">
-    <div id="myEcharts" :style="{ width: '200px', height: '100px' }"></div>
+    <div id="myEcharts" :style="{ width: '400px', height: '200px' }"></div>
   </div>
 </template>
 

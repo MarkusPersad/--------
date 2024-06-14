@@ -21,7 +21,7 @@ const {selectedFile} = useSelectedFile()
   <TresCanvas>
     <TresAmbientLight/>
     <TresDirectionalLight/>
-    <TresPerspectiveCamera :args="[45, 1, 0.1, 1000]" />
+    <TresPerspectiveCamera :args="[60, 1, 0.1, 100]" />
     <OrbitControls />
     <Html
         center
