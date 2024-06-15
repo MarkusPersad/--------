@@ -22,7 +22,7 @@ const {setSelectedFile} = useSelectedFile()
 
 <template>
 <div class="layout">
-  <div class="layout-sidebar">
+  <div class="layout-sidebar" style="z-index: 1">
     <ElMenu
     default-active="1"
     class="sidebar-menu"
